@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Habitación 404</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+
+    <header class="encabezado-principal">
+        <nav class="navegacion-principal">
+            <a href="index.html" class="logo">La Habitación 404</a>
+
+            <div class="enlaces-navegacion">
+                <a href="index.html">Inicio</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="#" target="_blank">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="contenido-principal">
+        <section id="pantallo-inicio" class="pantalla pantalla-activa">
+            <div class="contenedor-inicial">
+                <p class="etiqueta-juego">Escape Room Web</p>
+                <h1>La Habitación 404</h1>
+                <p class="texto-introduccion">
+                    Error 404: salida no encontrada. Resolvé los enigmas, restaurá el sistema y escapá antes de que el tiempo llegue a cero.
+                </p>
+
+                <div class="acciones-inicio">
+                    <button id="boton-jugar" class="boton boton-principal">Jugar</button>
+                    <button id="boton-instrucciones" class="boton boton-secundario">Instrucciones</button>
+                    <button id="boton-ranking" class="boton boton-secundario">Ranking</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="pantalla-juego" class="pantalla">
+            <div class="barra-juego">
+                <p>Jugador: <span id="nombre-jugador">-</span></p>
+                <p>Tiempo: <span id="tiempo-juego">10:00</span></p>
+                <p>Vidas: <span id="vidas-juego">3</span></p>
+                <p>Progreso: <span id="progreso-juego">0/4</span></p>
+            </div>
+
+            <div class="escena-juego">
+                <button id="objeto-computadora" class="objeto-juego">Computadora</button>
+                <button id="objeto-caja" class="objeto-juego">Caja fuerte</button>
+                <button id="objeto-panel" class="objeto-juego">Panel eléctrico</button>
+                <button id="objeto-puerta" class="objeto-juego">Puerta</button>
+            </div>
+
+
+            <div class="panel-inferior">
+                <div>
+                    <h2>Inventario</h2>
+                    <ul id="lista-inventario" class="lista-inventario"></ul>
+                </div>
+
+                <div class="acciones-juego">
+                    <button id="boton-pausa" class="boton boton-secundario">Pausa</button>
+                    <button id="boton-reiniciar" class="boton boton-secundario">Reiniciar</button>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <div id="modal-general" class="modal">
+        <div class="contenido-modal">
+            <button id="boton-cerrar-modal" class="boton-cerrar">×</button>
+            <h2 id="titulo-modal">Título</h2>
+            <div id="cuerpo-modal"></div>
+
+        </div>
+    </div>
+
+
+    <script src="js/validations.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/puzzles.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

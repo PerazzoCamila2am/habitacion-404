@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - La Habitación 404</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <header class="encabezado-principal">
+        <nav class="navegacion-principal">
+            <a href="index.html" class="logo">La Habitación 404</a>
+
+            <div class="enlaces-navegacion">
+                <a href="index.html">Inicio</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="#" target="_blank">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="contenido-principal">
+        <section class="seccion-contacto">
+            <div class="contenedor-contacto">
+                <p class="etiqueta-juego">Contacto</p>
+                <h1>Enviar mensaje</h1>
+                <p class="texto-introduccion">
+                    Completá el formulario para enviar un mensaje desde tu aplicación de correo predeterminada.
+                </p>
+
+
+                <form id="formulario-contacto" class="formulario-contacto" novalidate>
+                    <div class="grupo-formulario">
+                        <label for="nombre-contacto">Nombre</label>
+                        <input type="text" id="nombre-contacto" name="nombre">
+                        <p id="error-nombre-contacto" class="mensaje-error"></p>
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="mail-contacto">Mail</label>
+                        <input type="email" id="mail-contacto" name="mail">
+                        <p id="error-mail-contacto" class="mensaje-error"></p>
+                    </div>
+
+
+                    <div class="grupo-formulario">
+                        <label for="mensaje-contacto">Mensaje</label>
+                        <textarea name="mensaje" id="mensaje-contacto"></textarea>
+                        <p id="error-mensaje-contacto" class="mensaje-error"></p>
+                    </div>
+
+                    <button type="submit" class="boton boton-principal">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script src="js/validations.js"></script>
+    <script src="js/contact.js"></script>
+    
+</body>
+</html>
