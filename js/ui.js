@@ -92,3 +92,63 @@ function mostrarMensajeModal(mensaje) {
 
     cuerpoModal.appendChild(parrafo);
 }
+
+
+function mostrarRanking() {
+    var ranking;
+    var contenido;
+    var i;
+
+    ranking = obtenerRanking();
+    contenido = "";
+
+    if (ranking.length === 0) {
+        contenido += "<p>Todavía no hay partidas registradas.</p>";
+    } else {
+        contenido += "<p>Mejores partidas guardadas en este navegador.</p>";
+        contenido += "<div class= 'tabla-ranking'>";
+        contenido += "<div class= 'fila-ranking encabezado-ranking'>";
+        contenido += "<span>Jugador</span>";
+        contenido += "<span>Resultado</span>";
+        contenido += "<span>Puntaje</span>";
+        contenido += "</div>";
+
+        for (i=0; i < ranking.length; i++) {
+            contenido += "<div class='fila-ranking'>";
+            contenido += "<span>" + ranking[i].jugador + "</span>";
+            contenido += "<span>" + ranking[i].resultado + "</span>";
+            contenido += "<span>" + ranking[i].puntaje + "</span>";
+            contenido += "</div>";
+        }
+
+        contenido += "</div>";
+        contenido += "<button id= 'boton-limpiar-ranking' class='boton boton-secundario'>Limpiar ranking</button>";
+    }
+
+    abrirModal("Ranking", contenido);
+
+    if (ranking.length > 0) {
+        obtenerElemento("boton-limpiar-ranking").addEventListener("click", confirmarLimpiarRanking);
+
+    }
+}
+
+function confirmarLimpiarRanking() {
+    var contenido;
+
+    contenido = "";
+    contenido += "<p>¿Seguro que querés borrar el ranking guardado?</p>";
+    contenido += "<div class= 'acciones-inicio'>";
+    contenido += "<button id='boton-confirmar-limpiar-ranking' class='boton boton-principal'>Si, borrar</button>";
+    contenido += "<button id='boton-cancelar-limpiar-ranking' class='boton boton-secundario'>Cancelar</button>";
+    contenido += "</div>";
+
+    abrirModal("Borrar ranking", contenido);
+
+    obtenerElemento("boton-confirmar-limpiar-ranking").addEventListener("click", function() {
+        limpiarHistorialPartidas();
+        mostrarRanking();
+    } );
+
+    obtenerElemento("boton-cancelar-limpiar-ranking").addEventListener("click", mostrarRanking);
+}

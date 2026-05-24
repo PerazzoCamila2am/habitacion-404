@@ -120,6 +120,7 @@ function perderPartida(mensaje) {
     estadoJuego.resultado = "Derrota";
 
     detenerTemporizador();
+    guardarResultadoPartida();
 
     mostrarModalFinPartida("Game Over", mensaje);
 }
@@ -130,6 +131,7 @@ function ganarPartida() {
     estadoJuego.resultado = "Victoria";
 
     detenerTemporizador();
+    guardarResultadoPartida();
 
     mostrarModalFinPartida("Escape exitoso", "Lograste salir de la Habitación 404 antes de que el sistema se reinicie.");
 }
@@ -142,6 +144,7 @@ function mostrarModalFinPartida(titulo, mensaje) {
     contenido += "<p>Jugador: <strong>" + estadoJuego.nombreJugador + "</strong></p>";
     contenido += "<p>Tiempo restante: <strong>" + formatearTiempo(estadoJuego.tiempoRestante) + "</strong></p>";
     contenido += "<p>Vidas restantes: <strong>" + estadoJuego.vidas + "</strong></p>";
+    contenido += "<p>Puntaje final: <strong>" + calcularPuntajeFinal() + "</strong></p>";
     contenido += "<div class= 'acciones-inicio'>";
     contenido += "<button id='boton-jugar-otra-vez' class='boton boton-principal'>Jugar otra vez</button>";
     contenido += "<button id='boton-volver-inicio' class='boton boton-secundario'>Volver al inicio</button>";
@@ -162,4 +165,42 @@ function volverAlInicio() {
 
     cerrarModal();
     mostrarPantalla("pantalla-inicio");
+}
+
+
+function calcularPuntajeFinal() {
+    var puntaje;
+    var bonusResultado;
+
+    bonusResultado = 0;
+
+    if(estadoJuego.resultado === "Victoria") {
+        bonusResultado = 500;
+    }
+
+    puntaje = 0;
+    puntaje += estadoJuego.tiempoRestante * 2;
+    puntaje += estadoJuego.vidas * 100;
+    puntaje += estadoJuego.progreso * 150;
+    puntaje += bonusResultado;
+
+    return puntaje;
+}
+
+function guardarResultadoPartida() {
+    var partida;
+    var fechaActual;
+
+    fechaActual = new Date();
+    partida = {
+        jugador: estadoJuego.nombreJugador,
+        resultado: estadoJuego.resultado,
+        puntaje: calcularPuntajeFinal(),
+        tiempoRestante: formatearTiempo(estadoJuego.tiempoRestante),
+        vidasRestantes: estadoJuego.vidas,
+        progreso: estadoJuego.progreso + "/" + estadoJuego.totalObjetivos,
+        fecha: fechaActual.toLocaleDateString()
+    };
+
+    guardarPartidaEnHistorial(partida);
 }
