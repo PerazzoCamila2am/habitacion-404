@@ -5,16 +5,28 @@ document.addEventListener("DOMContentLoaded", function () {
     var botonCerrarModal;
     var botonReiniciar;
     var botonPausa;
+    var objetoComputadora;
+    var objetoCaja;
+    var objetoPanel;
+    var objetoPuerta;
 
     botonJugar = obtenerElemento("boton-jugar");
     botonCerrarModal = obtenerElemento("boton-cerrar-modal");
     botonReiniciar = obtenerElemento("boton-reiniciar");
     botonPausa = obtenerElemento("boton-pausa");
+    objetoComputadora = obtenerElemento("objeto-computadora");
+    objetoCaja = obtenerElemento("objeto-caja");
+    objetoPanel = obtenerElemento("objeto-panel");
+    objetoPuerta = obtenerElemento("objeto-puerta");
 
     botonJugar.addEventListener("click", mostrarModalNombre);
     botonCerrarModal.addEventListener("click", cerrarModal);
     botonReiniciar.addEventListener("click", reiniciarPartida);
     botonPausa.addEventListener("click", alternarPausa);
+    objetoComputadora.addEventListener("click", abrirComputadora);
+    objetoCaja.addEventListener("click", abrirCajaFuerte);
+    objetoPanel.addEventListener("click", abrirPanelElectrico);
+    objetoPuerta.addEventListener("click", abrirPuerta);
 });
 
 

@@ -57,3 +57,38 @@ function actualizarTiempo(textoTiempo) {
 function actualizarProgreso(progreso, total) {
     obtenerElemento("progreso-juego").textContent = progreso + "/" + total;
 }
+
+function actualizarInventario() {
+    var listaInventario;
+    var i;
+    var item;
+
+    listaInventario = obtenerElemento("lista-inventario");
+    listaInventario.innerHTML = "";
+
+    if (estadoJuego.inventario.length === 0) {
+        item = document.createElement("li");
+        item.textContent = "Vacío";
+        listaInventario.appendChild(item);
+        return;
+    }
+
+    for (i = 0; i < estadoJuego.inventario.length; i++) {
+        item = document.createElement("li");
+        item.textContent = estadoJuego.inventario[i];
+        listaInventario.appendChild(item);
+    }
+}
+
+function mostrarMensajeModal(mensaje) {
+    var cuerpoModal;
+    var parrafo;
+
+    cuerpoModal = obtenerElemento("cuerpo-modal");
+
+    parrafo = document.createElement("p");
+    parrafo.className = "mensaje-error";
+    parrafo.textContent = mensaje;
+
+    cuerpoModal.appendChild(parrafo);
+}

@@ -8,7 +8,12 @@ var estadoJuego = {
     totalObjetivos: 4,
     partidaActiva: false,
     juegoPausado: false,
-    resultado: ""
+    resultado: "",
+    energiaRestaurada: false,
+    cajaAbierta: false,
+    computadoraDesbloqueada: false,
+    tarjetaEncontrada: false,
+    inventario: []
 };
 
 
@@ -20,6 +25,12 @@ function iniciarPartida(nombreJugador) {
     estadoJuego.partidaActiva = true;
     estadoJuego.juegoPausado = false;
     estadoJuego.resultado = "";
+    estadoJuego.energiaRestaurada = false;
+    estadoJuego.cajaAbierta = false;
+    estadoJuego.computadoraDesbloqueada = false;
+    estadoJuego.tarjetaEncontrada = false;
+    estadoJuego.inventario = [];
+
 
 
 
@@ -27,6 +38,7 @@ actualizarNombreJugador(estadoJuego.nombreJugador);
 actualizarTiempo(formatearTiempo(estadoJuego.tiempoRestante));
 actualizarVidas(estadoJuego.vidas);
 actualizarProgreso(estadoJuego.progreso, estadoJuego.totalObjetivos);
+actualizarInventario();
 
 cerrarModal();
 mostrarPantalla("pantalla-juego");
@@ -76,6 +88,28 @@ function mostrarModalPausa() {
 function reanudarPartida() {
     reanudarTemporizador();
     cerrarModal();
+}
+
+function completarObjetivo() {
+    estadoJuego.progreso++;
+    actualizarProgreso(estadoJuego.progreso, estadoJuego.totalObjetivos);
+}
+
+function perderVida(mensaje) {
+    estadoJuego.vidas--;
+    actualizarVidas(estadoJuego.vidas);
+
+    if (estadoJuego.vidas <=0) {
+        perderPartida("Te quedaste sin vidas. El sistema bloqueó la habitación.");
+        return;
+    }
+
+    mostrarMensajeModal(mensaje);
+}
+
+function agregarAlInventario(nombreObjeto) {
+    estadoJuego.inventario.push(nombreObjeto);
+    actualizarInventario();
 }
 
 function perderPartida(mensaje) {
