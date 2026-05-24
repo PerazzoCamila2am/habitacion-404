@@ -4,14 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
     var botonJugar;
     var botonCerrarModal;
     var botonReiniciar;
+    var botonPausa;
 
     botonJugar = obtenerElemento("boton-jugar");
     botonCerrarModal = obtenerElemento("boton-cerrar-modal");
     botonReiniciar = obtenerElemento("boton-reiniciar");
+    botonPausa = obtenerElemento("boton-pausa");
 
     botonJugar.addEventListener("click", mostrarModalNombre);
     botonCerrarModal.addEventListener("click", cerrarModal);
     botonReiniciar.addEventListener("click", reiniciarPartida);
+    botonPausa.addEventListener("click", alternarPausa);
 });
 
 
