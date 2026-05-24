@@ -18,9 +18,67 @@ function abrirComputadora() {
 }
 
 function abrirCajaFuerte() {
+    var contenido;
+
+    if (estadoJuego.cajaAbierta === true) {
+        abrirModal( 
+            "Caja fuerte abierta",
+            "<p>La caja fuerte ya está abierta. La tarjeta de acceso fue agregada al inventario.</p>"
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>La caja fuerte tiene un teclado numérico.</p>";
+    contenido += "<p>Una incripción dice: <strong>El error comienza en cero.</strong></p>";
+    contenido += "<div class= 'campo-modal'>";
+    contenido += "<label for='input-codigo-caja'>Código de seguridad</label>";
+    contenido += "<input type='text' id='input-codigo-caja' maxlength='4' autocomplete='off'>";
+    contenido += "<p id='error-codigo-caja' class='mensaje-error'></p>";
+    contenido += "</div>";
+    contenido += "<button id='boton-validar-caja' class='boton boton-principal'>Abrir caja</button>";
+
+    abrirModal("Caja fuerte", contenido);
+
+    obtenerElemento("boton-validar-caja").addEventListener("click", validarCajaFuerte);
+
+     obtenerElemento("input-codigo-caja").addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter") {
+            validarCajaFuerte();
+        }
+    });
+
+}
+
+
+function validarCajaFuerte() {
+    var inputCodigo;
+    var errorCodigo;
+    var codigoIngresado;
+
+    inputCodigo = obtenerElemento("input-codigo-caja");
+    errorCodigo = obtenerElemento("error-codigo-caja");
+    codigoIngresado = inputCodigo.value.trim();
+
+    if (codigoIngresado.length === 0) {
+        errorCodigo.textContent = "Ingresá un código para abrir la caja.";
+        return;
+    }
+
+    if (codigoIngresado !== "0404") {
+        perderVida("Código incorrecto. Perdiste una vida.");
+        return;
+    }
+
+    estadoJuego.cajaAbierta = true;
+    estadoJuego.tarjetaEncontrada = true;
+
+    agregarAlInventario("Tarjeta de acceso");
+    completarObjetivo();
+
     abrirModal(
-        "Caja fuerte",
-        "<p>La caja fuerte tiene un teclado numérico. Este puzzle lo vamos a implementar en el próximo paso.</p>"
+        "Caja abierta",
+        "<p>La caja fuerte se abrió correctamente. Encontraste una tarjeta de acceso.</p>"
     );
 }
 
