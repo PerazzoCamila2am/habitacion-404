@@ -3,17 +3,71 @@
 var interruptoresPanel = [false, false, false, false];
 
 function abrirComputadora() {
+    var contenido;
+
     if (estadoJuego.energiaRestaurada === false) {
         abrirModal(
             "Computadora apagada",
-            "<p>La computadora no responde. Parece que primero tenés que restaurar la energía.</p>"
+            "<p>La computadora no responde. Parece que primero tenés que restaurar la energía desde el panel eléctrico.</p>"
         );
         return;
     }
 
+    if (estadoJuego.computadoraDesbloqueada === true) {
+        abrirModal(
+            "Computadora desbloqueada",
+            "<p>La terminal ya fue desbloqueada. El sistema muestra el mensaje: <strong>Acceso final habilitado.</strong></p>"
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>La computadora volvió a encederse. En la pantalla aparece una terminal bloqueada.</p>";
+    contenido += "<p>Pista: <strong>La salida no se encuentra.</strong></p>";
+    contenido += "<div class= 'campo-modal'>";
+    contenido += "<label for= 'input-clave-computadora'> Contraseña de la terminal</label>";
+    contenido += "<input type='text' id='input-clave-computadora' autocomplete='off'>";
+    contenido += "<p id='error-clave-computadora' class='mensaje-error'></p>";
+    contenido += "</div>";
+    contenido += "<button id='boton-validar-computadora' class='boton boton-principal'>Desbloquear terminal</button>";
+
+    abrirModal("Computadora", contenido);
+
+    obtenerElemento("boton-validar-computadora").addEventListener("click", validarComputadora);
+
+    obtenerElemento("input-clave-computadora").addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter") {
+            validarComputadora();
+        }
+    });
+
+}
+
+function validarComputadora() {
+    var inputClave;
+    var errorClave;
+    var claveIngresada;
+
+    inputClave = obtenerElemento("input-clave-computadora");
+    errorClave = obtenerElemento("error-clave-computadora");
+    claveIngresada = inputClave.value.trim().toLowerCase();
+
+    if (claveIngresada.length === 0) {
+        errorClave.textContent = "Ingresá una contraseña para desbloquear la terminal.";
+        return;
+    }
+
+    if (claveIngresada !== "error404") {
+        perderVida("Contraseña incorrecta. Perdiste una vida.");
+        return;
+    }
+
+    estadoJuego.computadoraDesbloqueada = true;
+    completarObjetivo();
+
     abrirModal(
-        "Computadora bloqueada",
-        "<p>La terminal solicita una contraseña. Este puzzle lo vamos a implementar en el próximo paso.</p>"
+        "Terminal desbloqueada",
+        "<p>La computadora aceptó la contraseña. El sistema indica que la puerta final puede ser desbloqueada con la tarjeta de acceso.</p> "
     );
 }
 
@@ -30,8 +84,8 @@ function abrirCajaFuerte() {
 
     contenido = "";
     contenido += "<p>La caja fuerte tiene un teclado numérico.</p>";
-    contenido += "<p>Una incripción dice: <strong>El error comienza en cero.</strong></p>";
-    contenido += "<div class= 'campo-modal'>";
+    contenido += "<p>Una inscripción dice: <strong>El error comienza en cero.</strong></p>";
+    contenido += "<div class='campo-modal'>";
     contenido += "<label for='input-codigo-caja'>Código de seguridad</label>";
     contenido += "<input type='text' id='input-codigo-caja' maxlength='4' autocomplete='off'>";
     contenido += "<p id='error-codigo-caja' class='mensaje-error'></p>";
