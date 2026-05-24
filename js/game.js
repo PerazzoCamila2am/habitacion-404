@@ -13,6 +13,7 @@ var estadoJuego = {
     cajaAbierta: false,
     computadoraDesbloqueada: false,
     tarjetaEncontrada: false,
+    abrirPuerta: false,
     inventario: []
 };
 
@@ -29,6 +30,7 @@ function iniciarPartida(nombreJugador) {
     estadoJuego.cajaAbierta = false;
     estadoJuego.computadoraDesbloqueada = false;
     estadoJuego.tarjetaEncontrada = false;
+    estadoJuego.abrirPuerta = false;
     estadoJuego.inventario = [];
 
 

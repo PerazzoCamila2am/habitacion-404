@@ -219,13 +219,55 @@ function validarPanelElectrico() {
 }
 
 function abrirPuerta() {
-    if (estadoJuego.progreso < estadoJuego.totalObjetivos) {
+    var contenido;
+
+    if (estadoJuego.energiaRestaurada === false) {
         abrirModal(
-            "Puerta bloqueada",
-            "<p>La puerta principal sigue bloqueada. Todavía faltan objetivos por completar.</p>"
+            "Puerta sin energía",
+            "<p>La puerta principal no responde. Primero tenés que restaurar la energía desde el panel eléctrico.</p> "
+
         );
         return;
     }
 
+    if (estadoJuego.tarjetaEncontrada === false) {
+        abrirModal(
+            "Acceso denegado",
+            "<p>El lector de la puerta solicita una tarjeta de acceso. Buscá una forma de encontrarla dentro de la habitación.</p>"
+
+        );
+        return;
+    }
+
+
+    if (estadoJuego.computadoraDesbloqueada === false) {
+        abrirModal(
+            "Sistema bloqueado",
+            "<p>La tarjeta fue detectada, pero la computadora principal todavía no habilitó la salida.</p> "
+
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>La tarjeta fue aceptada y la computadora habilitó el acceso final.</p>";
+    contenido += "<p>El sistema muestra el mensaje: <strong>Salida encontrada.</strong></p>";
+    contenido += "<div class= 'acciones-inicio'>";
+    contenido += "<button id='boton-abrir-puerta-final' class='boton boton-principal'>Abrir puerta</button>";
+    contenido += "</div>";
+
+    abrirModal("Puerta desbloqueada", contenido);
+
+    obtenerElemento("boton-abrir-puerta-final").addEventListener("click", completarEscape);
+}
+
+
+function completarEscape() {
+    if (estadoJuego.abrirPuerta === true) {
+        return;
+    }
+
+    estadoJuego.puertaAbierta = true;
+    completarObjetivo();
     ganarPartida();
 }
