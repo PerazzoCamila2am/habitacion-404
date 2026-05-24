@@ -1,0 +1,18 @@
+:root {
+    --color-fondo: #0b0f1a;
+    --color-panel: #111827;
+    --color-panel-secundario: #1f2937;
+    --color-texto: #f8fafc;
+    --color-text-suave: #cbd5e1;
+    --color-principal: #38bdf8;
+    --color-principal-oscuro: #0284c7;
+    --color-peligro: #ef4444;
+    --color-exito: #22c55e;
+    --color-advertencia: #facc15;
+    --color-borde: rgba(255,255,255,0.12);
+    --sobra-panel: 0 20px 60px rgba(0,0,0,0.35);
+    --radio-grande: 24px;
+    --radio-medio: 14px;
+}
+
+
