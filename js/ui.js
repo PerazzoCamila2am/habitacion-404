@@ -152,3 +152,22 @@ function confirmarLimpiarRanking() {
 
     obtenerElemento("boton-cancelar-limpiar-ranking").addEventListener("click", mostrarRanking);
 }
+
+function mostrarInstrucciones() {
+    var contenido;
+
+    contenido = "";
+    contenido += "<p><strong>Objetivo:</strong> escapá de La Habitación 404 antes de que el tiempo a cero.</p>";
+    contenido += "<p>Para avanzar, tenés que explorar los objetos de la habitación y resolver los puzzles.</p>";
+    contenido += "<div class='lista-instrucciones'>";
+    contenido += "<p><strong>Computadora:</strong>necesitás restaurar la energía antes de usarla.</p>";
+    contenido += "<p><strong>Caja fuerte:</strong>contiene una tarjeta de acceso.</p>";
+    contenido += "<p><strong>Panel eléctrico:</strong>permite volver a encender el sistema.</p>";
+    contenido += "<p><strong>Puerta:</strong> se abre cuando completás todos los objetivos.</p>";
+    contenido += "</div>";
+    contenido += "<p>Tenés <strong>3 vidas</strong>. Si fallás códigos o contraseñas, perdés una vida.</p>";
+    contenido += "<p>El ranking se guarda en este navegador usando LocalStorage.</p>";
+
+    abrirModal("Instrucciones", contenido);
+
+}

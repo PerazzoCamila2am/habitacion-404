@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var botonReiniciar;
     var botonPausa;
     var botonRanking;
+    var botonInstrucciones;
     var objetoComputadora;
     var objetoCaja;
     var objetoPanel;
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     botonReiniciar = obtenerElemento("boton-reiniciar");
     botonPausa = obtenerElemento("boton-pausa");
     botonRanking = obtenerElemento("boton-ranking");
+    botonInstrucciones = obtenerElemento("boton-instrucciones");
     objetoComputadora = obtenerElemento("objeto-computadora");
     objetoCaja = obtenerElemento("objeto-caja");
     objetoPanel = obtenerElemento("objeto-panel");
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     botonReiniciar.addEventListener("click", reiniciarPartida);
     botonPausa.addEventListener("click", alternarPausa);
     botonRanking.addEventListener("click", mostrarRanking);
+    botonInstrucciones.addEventListener("click", mostrarInstrucciones);
     objetoComputadora.addEventListener("click", abrirComputadora);
     objetoCaja.addEventListener("click", abrirCajaFuerte);
     objetoPanel.addEventListener("click", abrirPanelElectrico);
