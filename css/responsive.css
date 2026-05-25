@@ -1,0 +1,109 @@
+@media (max-width: 900px) {
+    h1 {
+        font-size: 52px;
+    }
+
+    .contenedor-inicio,
+    .contenedor-contacto {
+        padding: 46px;
+    }
+
+    .objeto-juego {
+        width: 46%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navegacion-principal {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .enlaces-navegacion {
+        flex-wrap: wrap;
+    }
+
+    .contenido-principal {
+        padding: 28px 0;
+    }
+
+    .contenedor-inicio,
+    .contenedor-contacto {
+        min-height: auto;
+        padding: 34px 24px;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    .texto-introduccion {
+        font-size: 17px;
+    }
+
+    .barra-juego,
+    .panel-inferior {
+        flex-direction: column;
+    }
+
+    .escenas-juego {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .escenas-juego::after {
+        display: none;
+    }
+
+    .objeto-juego {
+        width: 100%;
+    }
+
+    .acciones-juego {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .acciones-juego .boton {
+        width: 100%;
+    }
+
+    .fila-ranking {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenido-principal {
+        width: min(100% - 28px, 1120px);
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .acciones-inicio {
+        width: 100%;
+    }
+
+    .acciones-inicio .boton {
+        width: 100%;
+    }
+
+    .contenido-modal {
+        padding: 28px 22px;
+    }
+
+    .contenido-interruptores {
+        flex-direction: column;
+    }
+
+    .interruptor-panel {
+        width: 100%;
+    }
+}
+
