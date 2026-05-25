@@ -20,7 +20,8 @@ function enviarFormularioContacto(evento) {
     var formularioValido;
     var asunto;
     var cuerpo;
-    var enlaceMail;
+    var enlaceMailto;
+    var enlaceGmail;
 
     evento.preventDefault();
 
@@ -49,9 +50,58 @@ function enviarFormularioContacto(evento) {
     cuerpo += "Mail: " + mail.trim() + "\n\n";
     cuerpo += "Mensaje:\n" + mensaje.trim();
 
-    enlaceMail = "mailto:camiltaperazzo@gmail.com";
-    enlaceMail += "?subject=" + encodeURIComponent(asunto);
-    enlaceMail += "&body=" + encodeURIComponent(cuerpo);
+    enlaceMailto = crearEnlaceMailto(asunto, cuerpo);
+    enlaceGmail = crearEnlaceGmail(asunto, cuerpo);
 
-    window.location.href = enlaceMail;
+    window.location.href = enlaceMailto;
+
+    mostrarMensajeEnvioContacto(enlaceMailto, enlaceGmail);
+
+   }
+
+function crearEnlaceMailto(asunto, cuerpo) {
+    var enlaceMailto;
+
+    enlaceMailto = "mailto:camiltaperazzo@gmail.com";
+    enlaceMailto += "?subject=" + encodeURIComponent(asunto);
+    enlaceMailto += "&body=" + encodeURIComponent(cuerpo);
+
+    return enlaceMailto;
+}
+
+function crearEnlaceGmail(asunto, cuerpo) {
+    var enlaceGmail;
+
+    enlaceGmail = "https://mail.google.com/mail/?view=cm&fs=1";
+    enlaceGmail += "&to=" + encodeURIComponent("camiltaperazzo@gmail.com");
+    enlaceGmail += "&su=" + encodeURIComponent(asunto);
+    enlaceGmail += "&body=" + encodeURIComponent(cuerpo);
+
+    return enlaceGmail;
+}
+
+function mostrarMensajeEnvioContacto(enlaceMailto, enlaceGmail) {
+    var formularioContacto;
+    var mensajeAnterior;
+    var mensajeExito;
+
+    formularioContacto = document.getElementById("formulario-contacto");
+    mensajeAnterior = document.getElementById("mensaje-exito-contacto");
+
+    if (mensajeAnterior !== null) {
+        mensajeAnterior.parentNode.removeChild(mensajeAnterior);
+    }
+
+    mensajeExito = document.createElement("div");
+    mensajeExito.id = "mensaje-exito-contacto";
+    mensajeExito.className = "mensaje-exito-contacto";
+
+    mensajeExito.innerHTML = "";
+    mensajeExito.innerHTML += "<p>Si tu correo predeterminado no se abrió automáticamente, podés usar una de estas opciones:</p>";
+    mensajeExito.innerHTML += "<div class='acciones-contacto'>";
+    mensajeExito.innerHTML += "<a class='boton boton-secundario' href='" + enlaceMailto + "'>Intentar con correo predeterminado</a>";
+    mensajeExito.innerHTML += "<a class='boton boton-principal' href='" + enlaceGmail + "' target='_blank'>Abrir con Gmail</a>";
+    mensajeExito.innerHTML += "</div>";
+
+    formularioContacto.appendChild(mensajeExito);
 }
