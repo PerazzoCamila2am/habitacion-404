@@ -4,7 +4,7 @@ var estadoJuego = {
     nombreJugador: "",
     dificultad: "normal",
     tiempoInicial: 600,
-    VidasIniciales: 3,
+    vidasIniciales: 3,
     tiempoRestante: 600,
     vidas: 3,
     progreso: 0,
@@ -25,18 +25,18 @@ function configurarDificultad(dificultad) {
 
     if (dificultad === "facil") {
         estadoJuego.tiempoInicial = 720;
-        estadoJuego.VidasIniciales = 5;
+        estadoJuego.vidasIniciales = 5;
         return;
     }
 
     if (dificultad === "dificil") {
         estadoJuego.tiempoInicial = 420;
-        estadoJuego.VidasIniciales = 2;
+        estadoJuego.vidasIniciales = 2;
         return;
     }
 
     estadoJuego.tiempoInicial = 600;
-    estadoJuego.VidasIniciales = 3;
+    estadoJuego.vidasIniciales = 3;
 }
 
 function obtenerDificultadSeleccionada() {
@@ -59,7 +59,7 @@ function iniciarPartida(nombreJugador) {
 
     estadoJuego.nombreJugador = nombreJugador;
     estadoJuego.tiempoRestante = estadoJuego.tiempoInicial;
-    estadoJuego.vidas = estadoJuego.VidasIniciales;
+    estadoJuego.vidas = estadoJuego.vidasIniciales;
     estadoJuego.progreso = 0;
     estadoJuego.partidaActiva = true;
     estadoJuego.juegoPausado = false;
@@ -174,7 +174,7 @@ function ganarPartida() {
 
     detenerTemporizador();
     guardarResultadoPartida();
-    revisarlogros();
+    revisarLogros();
     reproducirSonido("victoria");
 
     mostrarModalFinPartida("Escape exitoso", "Lograste salir de la Habitación 404 antes de que el sistema se reinicie.");
@@ -264,12 +264,12 @@ function obtenerTextoDificultad() {
 }
 
 
-function revisarlogros() {
+function revisarLogros() {
     if (estadoJuego.resultado === "Victoria") {
         guardarLogro("Primer escape");
     }
 
-    if (estadoJuego.resultado === "Victoria" && estadoJuego.vidas === estadoJuego.VidasIniciales) {
+    if (estadoJuego.resultado === "Victoria" && estadoJuego.vidas === estadoJuego.vidasIniciales) {
         guardarLogro("Sin errores");
     }
 

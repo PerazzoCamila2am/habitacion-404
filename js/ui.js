@@ -197,7 +197,7 @@ function aplicarTema(tema) {
 
     botonTema = obtenerElemento("boton-tema");
 
-    if (tema == "claro") {
+    if (tema === "claro") {
         document.body.classList.add("modo-claro");
 
         if (botonTema !== null) {
@@ -235,7 +235,7 @@ function crearItemLogro(nombre, descripcion, logrosGuardados) {
 
     desbloqueado = logrosGuardados.indexOf(nombre) !== -1;
 
-    contenido = "",
+    contenido = "";
     contenido += "<div class='item-logro'>";
 
     if (desbloqueado === true) {

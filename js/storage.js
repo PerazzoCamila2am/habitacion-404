@@ -56,7 +56,7 @@ function obtenerTemaGuardado() {
 function obtenerLogrosGuardados() {
     var logrosGuardados;
 
-    logrosGuardados = localStorage.getItem("habitacion404logros");
+    logrosGuardados = localStorage.getItem("habitacion404Logros");
     
     if (logrosGuardados === null) {
         return [];
