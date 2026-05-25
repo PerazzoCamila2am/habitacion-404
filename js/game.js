@@ -44,6 +44,7 @@ actualizarInventario();
 
 cerrarModal();
 mostrarPantalla("pantalla-juego");
+reproducirSonido("click");
 iniciarTemporizador();
 }
 
@@ -95,11 +96,13 @@ function reanudarPartida() {
 function completarObjetivo() {
     estadoJuego.progreso++;
     actualizarProgreso(estadoJuego.progreso, estadoJuego.totalObjetivos);
+    reproducirSonido("exito");
 }
 
 function perderVida(mensaje) {
     estadoJuego.vidas--;
     actualizarVidas(estadoJuego.vidas);
+    reproducirSonido("error");
 
     if (estadoJuego.vidas <=0) {
         perderPartida("Te quedaste sin vidas. El sistema bloqueó la habitación.");
@@ -121,6 +124,7 @@ function perderPartida(mensaje) {
 
     detenerTemporizador();
     guardarResultadoPartida();
+    reproducirSonido("error");
 
     mostrarModalFinPartida("Game Over", mensaje);
 }
@@ -132,6 +136,7 @@ function ganarPartida() {
 
     detenerTemporizador();
     guardarResultadoPartida();
+    reproducirSonido("victoria");
 
     mostrarModalFinPartida("Escape exitoso", "Lograste salir de la Habitación 404 antes de que el sistema se reinicie.");
 }
