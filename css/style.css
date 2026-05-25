@@ -3,16 +3,214 @@
     --color-panel: #111827;
     --color-panel-secundario: #1f2937;
     --color-texto: #f8fafc;
-    --color-text-suave: #cbd5e1;
+    --color-texto-suave: #cbd5e1;
     --color-principal: #38bdf8;
     --color-principal-oscuro: #0284c7;
     --color-peligro: #ef4444;
     --color-exito: #22c55e;
     --color-advertencia: #facc15;
     --color-borde: rgba(255,255,255,0.12);
-    --sobra-panel: 0 20px 60px rgba(0,0,0,0.35);
+    --sombra-panel: 0 20px 60px rgba(0,0,0,0.35);
     --radio-grande: 24px;
     --radio-medio: 14px;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.12), transparent 28%),
+        var(--color-fondo);
+    color: var(--color-texto);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.encabezado-principal {
+    width: 100%;
+    border-bottom: 1px solid var(--color-borde);
+    background-color: rgba(11,15,26,0.88);
+
+}
+
+.navegacion-principal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1120px, 92%);
+    margin: 0 auto;
+    padding: 18px 0;
+}
+
+.logo {
+    color: var(--color-texto);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.enlaces-navegacion {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: var(--color-texto-suave);
+    font-size: 15px;
+}
+
+.enlaces-navegacion a {
+    transition: color 0.2s ease;
+}
+
+.enlaces-navegacion a:hover {
+    color: var(--color-principal);
+}
+
+.contenido-principal {
+    width: min(1120px, 92%);
+    margin: 0 auto;
+    padding: 48px 0;
+}
+
+.pantalla {
+    display: none;
+}
+
+.pantalla-activa {
+    display: flex;
+}
+
+.contenedor-inicio,
+.contenedor-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    width: 100%;
+    min-height: 600px;
+    padding: 64px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-grande);
+    background: 
+        linear-gradient(135deg, rgba(17,24,39,0.98), rgba(15,23,42,0.9)),
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0,18), transparent 40%);
+    box-shadow: var(--sombra-panel);
+    
+}
+
+.etiqueta-juego {
+    color: var(--color-principal);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+h1 {
+    max-width: 780px;
+    font-size: 64px;
+    line-height: 1;
+    
+}
+
+h2 {
+    color: var(--color-principal);
+}
+
+.texto-introduccion {
+    max-width: 680px;
+    color: var(--color-texto-suave);
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.accion-inicio,
+.accion-juego {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.boton {
+    min-height: 44px;
+    padding: 12px 22px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.2s ease, background-color 0.2s ease, borde-color 0.2s ease;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+}
+
+.boton-principal {
+    background-color: var(--color-principal);
+    color: #06111f;
+}
+
+.boton-principal:hover {
+    background-color: #7dd3fc;
+}
+
+.boton-secundario {
+    border-color: var(--color-borde);
+    background-color: rgba(255,255,255,0.06);
+    color: var(--color-texto);
+}
+
+.boton-secundario:hover {
+    border-color: var(--color-principal);
+    background-color: rgba(56,189, 248, 0.12);
+}
+
+.seccion-contacto {
+    display: flex;
+}
+
+.formulario-contacto{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: min(600px, 100%);
+}
+
+.grupo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.grupo-formulario label {
+    color: var(--color-texto-suave);
+    font-weight: 700;
+}
+
+.grupo-formulario input,
+.grupo-formulario textarea {
+    width: 100%;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    background-color: rgba(255,255,255,0.06);
+    color: var(--color-texto);
+    padding: 13px 14px;
+    outline: none;
+}
+
+.grupo-formulario textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.grupo-formulario input:focus,
+.grupo-formulario textarea:focus {
+    border-color: var(--color-principal);
+}
+
+.mensaje-error {
+    min-height: 18px;
+    color: var(--color-peligro);
+    font-size: 14px;
+    margin-top: 8px;
 }
 
 
