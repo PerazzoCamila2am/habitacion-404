@@ -47,7 +47,7 @@ function obtenerDificultadSeleccionada() {
 
     for (i=0; i < opciones.length; i++) {
         if (opciones[i].checked === true) {
-            return opciones[i].ariaValueMax;
+            return opciones[i].value;
         }
     }
     return "normal";
@@ -59,7 +59,7 @@ function iniciarPartida(nombreJugador) {
 
     estadoJuego.nombreJugador = nombreJugador;
     estadoJuego.tiempoRestante = estadoJuego.tiempoInicial;
-    estadoJuego.vidas = estadoJuego.vidasIniciales;
+    estadoJuego.vidas = estadoJuego.VidasIniciales;
     estadoJuego.progreso = 0;
     estadoJuego.partidaActiva = true;
     estadoJuego.juegoPausado = false;
