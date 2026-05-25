@@ -1,0 +1,153 @@
+#pantalla-juego {
+    flex-direction: column;
+    gap: 22px;
+}
+
+.barra-juego {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 18px 22px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    background-color: rgba(17,24,39, 0.92);
+    box-shadow: var(--sombra-panel);
+}
+
+.barra-juego p {
+    color: var(--color-principal);
+}
+
+.escena-juego {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    min-height: 480px;
+    padding: 36px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-grande);
+    background: 
+        radial-gradient(circle at center, rgba(56,189,248, 0.16), transparent 34%),
+        linear-gradient(135deg, rgba(15,23,42,0.98), rgba(2,6,23,0.98));
+    box-shadow: var(--sombra-panel);
+    overflow: hidden;
+
+}
+
+
+.escena-juego::before {
+    content: "";
+    position: absolute;
+    inset: 24px;
+    border: 1px solid rgba(56,189,248, 0.12);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.escena-juego::after {
+    content: "SECTOR 404";
+    position: absolute;
+    bottom: 20px;
+    right: 26px;
+    color: rgba(248,250,252, 0.08);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    pointer-events: none;
+}
+
+.objeto-juego {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    min-height: 124px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    background: 
+        linear-gradient(135deg, rgba(255,255,255, 0.08), rgba(255,255,255, 0.03));
+    color: var(--color-texto);
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 12px 34px rgba(0,0,0, 0.24);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+}
+
+
+.objeto-juego:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-principal);
+    background-color: rgba(56,189,248, 0.08);
+    box-shadow: 0 0 28px rgba(56,189,248, 0.24);
+}
+
+.objeto-juego:active {
+    transform: translateY(-1px);
+}
+
+#objeto-computadora::before,
+#objeto-caja::before,
+#objeto-panel::before,
+#objeto-puerta::before {
+    display: block;
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+#objeto-computadora::before {
+    content: "💻";
+}
+
+#objeto-caja::before {
+    content: "🔒";
+}
+
+#objeto-panel::before {
+    content: "⚡";
+}
+
+#objeto-puerta::before {
+    content: "🚪";
+}
+
+.panel-inferior {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    background-color: rgba(17,24,39, 0.92);
+    box-shadow: var(--sombra-panel);
+}
+
+.panel-inferior h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.lista-inventario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: var(--color-texto-suave);
+}
+
+.lista-inventario li {
+    padding: 8px 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 999px;
+    background-color: rgba(255,255,255, 0.96);
+}
+
+.acciones-juego {
+    align-items: center;
+    justify-content: flex-end;
+}
