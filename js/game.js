@@ -174,6 +174,7 @@ function ganarPartida() {
 
     detenerTemporizador();
     guardarResultadoPartida();
+    revisarlogros();
     reproducirSonido("victoria");
 
     mostrarModalFinPartida("Escape exitoso", "Lograste salir de la Habitación 404 antes de que el sistema se reinicie.");
@@ -260,4 +261,23 @@ function obtenerTextoDificultad() {
     }
 
     return "Normal";
+}
+
+
+function revisarlogros() {
+    if (estadoJuego.resultado === "Victoria") {
+        guardarLogro("Primer escape");
+    }
+
+    if (estadoJuego.resultado === "Victoria" && estadoJuego.vidas === estadoJuego.VidasIniciales) {
+        guardarLogro("Sin errores");
+    }
+
+    if (estadoJuego.resultado === "Victoria" && estadoJuego.tiempoRestante <= 60) {
+        guardarLogro("Contra reloj");
+    }
+
+    if (estadoJuego.progreso === estadoJuego.totalObjetivos) {
+        guardarLogro("Explorador");
+    }
 }

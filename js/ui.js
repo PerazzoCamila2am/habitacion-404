@@ -213,3 +213,49 @@ function aplicarTema(tema) {
         botonTema.textContent = "Modo claro";
     }
 }
+
+function mostrarLogros() {
+    var logros;
+    var contenido;
+
+    logros = obtenerLogrosGuardados();
+
+    contenido= "";
+    contenido += crearItemLogro("Primer escape", "Ganar una partida.", logros);
+    contenido += crearItemLogro("Sin errores", "Ganar sin perder vidas.", logros);
+    contenido += crearItemLogro("Contra reloj", "Ganar con menos de 1 minuto restante.", logros);
+    contenido += crearItemLogro("Explorador", "Completar todos los objetivos del escape room.", logros);
+
+    abrirModal("Logros", contenido);
+}
+
+function crearItemLogro(nombre, descripcion, logrosGuardados) {
+    var desbloqueado;
+    var contenido;
+
+    desbloqueado = logrosGuardados.indexOf(nombre) !== -1;
+
+    contenido = "",
+    contenido += "<div class='item-logro'>";
+
+    if (desbloqueado === true) {
+        contenido += "<span class= 'estado-logro logro-desbloqueado'>✓</span>";
+    } else {
+        contenido += "<span class='estado-logro logro-bloqueado'>?</span>";
+    }
+
+    contenido += "<div>";
+    contenido += "<h3>" + nombre + "</h3>";
+    contenido += "<p>" + descripcion + "</p>";
+
+    if (desbloqueado === true) {
+        contenido += "<p><strong>Desbloqueado</strong></p>";
+    } else {
+        contenido += "<p>Bloqueado</p>";
+    }
+
+    contenido += "</div>";
+    contenido += "</div>";
+
+    return contenido;
+}

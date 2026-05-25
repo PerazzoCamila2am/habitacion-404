@@ -52,3 +52,26 @@ function obtenerTemaGuardado() {
 
     return tema;
 }
+
+function obtenerLogrosGuardados() {
+    var logrosGuardados;
+
+    logrosGuardados = localStorage.getItem("habitacion404logros");
+    
+    if (logrosGuardados === null) {
+        return [];
+    }
+
+    return JSON.parse(logrosGuardados);
+}
+
+function guardarLogro(nombreLogro) {
+    var logros;
+
+    logros = obtenerLogrosGuardados();
+
+    if (logros.indexOf(nombreLogro)=== -1) {
+        logros.push(nombreLogro);
+        localStorage.setItem("habitacion404Logros", JSON.stringify(logros));
+    }
+}
