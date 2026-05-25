@@ -2,6 +2,9 @@
 
 var estadoJuego = {
     nombreJugador: "",
+    dificultad: "normal",
+    tiempoInicial: 600,
+    VidasIniciales: 3,
     tiempoRestante: 600,
     vidas: 3,
     progreso: 0,
@@ -17,11 +20,46 @@ var estadoJuego = {
     inventario: []
 };
 
+function configurarDificultad(dificultad) {
+    estadoJuego.dificultad = dificultad;
+
+    if (dificultad === "facil") {
+        estadoJuego.tiempoInicial = 720;
+        estadoJuego.VidasIniciales = 5;
+        return;
+    }
+
+    if (dificultad === "dificil") {
+        estadoJuego.tiempoInicial = 420;
+        estadoJuego.VidasIniciales = 2;
+        return;
+    }
+
+    estadoJuego.tiempoInicial = 600;
+    estadoJuego.VidasIniciales = 3;
+}
+
+function obtenerDificultadSeleccionada() {
+    var opciones;
+    var i;
+
+    opciones = document.querySelectorAll("input[name='dificultad']");
+
+    for (i=0; i < opciones.length; i++) {
+        if (opciones[i].checked === true) {
+            return opciones[i].ariaValueMax;
+        }
+    }
+    return "normal";
+}
+
 
 function iniciarPartida(nombreJugador) {
+    configurarDificultad(obtenerDificultadSeleccionada());
+
     estadoJuego.nombreJugador = nombreJugador;
-    estadoJuego.tiempoRestante = 600;
-    estadoJuego.vidas = 3;
+    estadoJuego.tiempoRestante = estadoJuego.tiempoInicial;
+    estadoJuego.vidas = estadoJuego.vidasIniciales;
     estadoJuego.progreso = 0;
     estadoJuego.partidaActiva = true;
     estadoJuego.juegoPausado = false;
@@ -147,6 +185,7 @@ function mostrarModalFinPartida(titulo, mensaje) {
     contenido = "";
     contenido += "<p>" + mensaje + "</p>";
     contenido += "<p>Jugador: <strong>" + estadoJuego.nombreJugador + "</strong></p>";
+    contenido += "<p>Dificultad: <strong>" + obtenerTextoDificultad() +"</strong></p>";
     contenido += "<p>Tiempo restante: <strong>" + formatearTiempo(estadoJuego.tiempoRestante) + "</strong></p>";
     contenido += "<p>Vidas restantes: <strong>" + estadoJuego.vidas + "</strong></p>";
     contenido += "<p>Puntaje final: <strong>" + calcularPuntajeFinal() + "</strong></p>";
@@ -200,6 +239,7 @@ function guardarResultadoPartida() {
     partida = {
         jugador: estadoJuego.nombreJugador,
         resultado: estadoJuego.resultado,
+        dificultad: obtenerTextoDificultad(),
         puntaje: calcularPuntajeFinal(),
         tiempoRestante: formatearTiempo(estadoJuego.tiempoRestante),
         vidasRestantes: estadoJuego.vidas,
@@ -208,4 +248,16 @@ function guardarResultadoPartida() {
     };
 
     guardarPartidaEnHistorial(partida);
+}
+
+function obtenerTextoDificultad() {
+    if (estadoJuego.dificultad === "facil") {
+        return "Fácil";
+    }
+
+    if (estadoJuego.dificultad === "dificil") {
+        return "Difícil";
+    }
+
+    return "Normal";
 }

@@ -291,3 +291,41 @@ body.modo-claro .fila-ranking,
 body.modo-claro .lista-instrucciones {
     background-color: rgba(15,23,42, 0.04);
 }
+
+
+.selector-dificultad {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    background-color: rgba(255,255,255,0.05);
+}
+
+.selector-dificultad p {
+    color: var(--color-texto-suave);
+    font-weight: 700;
+}
+
+.opciones-dificultad {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.opciones-dificultad label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: 999px;
+    color: var(--color-texto);
+    background-color: rgba(255,255,255,0.06);
+    cursor: pointer;
+}
+
+.opciones-dificultad input {
+    accent-color: var(--color-principal);
+}

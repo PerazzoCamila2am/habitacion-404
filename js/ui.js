@@ -109,14 +109,14 @@ function mostrarRanking() {
         contenido += "<div class= 'tabla-ranking'>";
         contenido += "<div class= 'fila-ranking encabezado-ranking'>";
         contenido += "<span>Jugador</span>";
-        contenido += "<span>Resultado</span>";
+        contenido += "<span>Dificultad</span>";
         contenido += "<span>Puntaje</span>";
         contenido += "</div>";
 
         for (i=0; i < ranking.length; i++) {
             contenido += "<div class='fila-ranking'>";
             contenido += "<span>" + ranking[i].jugador + "</span>";
-            contenido += "<span>" + ranking[i].resultado + "</span>";
+            contenido += "<span>" + ranking[i].dificultad + "</span>";
             contenido += "<span>" + ranking[i].puntaje + "</span>";
             contenido += "</div>";
         }
