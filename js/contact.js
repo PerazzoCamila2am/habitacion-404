@@ -2,8 +2,16 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var formularioContacto;
+    var botonTema;
 
     formularioContacto = document.getElementById("formulario-contacto");
+    botonTema = document.getElementById("boton-tema");
+
+    aplicarTemaGuardado();
+
+    if (botonTema !== null) {
+        botonTema.addEventListener("click", alternarTema);
+    }
 
     if (formularioContacto !== null) {
         formularioContacto.addEventListener("submit", enviarFormularioContacto);

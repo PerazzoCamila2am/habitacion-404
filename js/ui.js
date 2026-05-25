@@ -171,3 +171,45 @@ function mostrarInstrucciones() {
     abrirModal("Instrucciones", contenido);
 
 }
+
+function aplicarTemaGuardado() {
+    var tema;
+
+    tema = obtenerTemaGuardado();
+    aplicarTema(tema);
+}
+
+function alternarTema() {
+    var temaActual;
+
+    if (document.body.classList.contains("modo-claro") === true) {
+        temaActual = "oscuro";
+    } else {
+        temaActual = "claro";
+    }
+
+    aplicarTema(temaActual);
+    guardarTema(temaActual);
+}
+
+function aplicarTema(tema) {
+    var botonTema;
+
+    botonTema = obtenerElemento("boton-tema");
+
+    if (tema == "claro") {
+        document.body.classList.add("modo-claro");
+
+        if (botonTema !== null) {
+            botonTema.textContent = "Modo oscuro";
+        }
+
+        return;
+    }
+
+    document.body.classList.remove("modo-claro");
+
+    if (botonTema !== null) {
+        botonTema.textContent = "Modo claro";
+    }
+}

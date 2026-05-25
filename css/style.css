@@ -231,3 +231,63 @@ h2 {
     flex-wrap: wrap;
     gap: 12px;
 }
+
+
+.boton.tema {
+    border: 1px solid var(--color-borde);
+    border-radius: 999px;
+    background-color: rgba(255,255,255, 0.06);
+    color: var(--color-texto);
+    padding: 8px 14px;
+    font-weight: 700;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.boton-tema:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-principal);
+    background-color: rgba(56,189, 248, 0.12);
+}
+
+body.modo-claro {
+    --color-fondo: #eaf2ff;
+    --color-panel: #ffffff;
+    --color-panel-secundario: #dbeafe;
+    --color-texto: #0f172a;
+    --color-texto-suave: #475569;
+    --color-borde: rgba(15,23,42, 0.16);
+    --sombra-panel: 0 20px 60px rgba(15,23,42, 0.12);
+
+    background: 
+        radial-gradient(circle at top left, rgba(56,189,248, 0.22), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(14,165,233, 0.16), transparent 28%),
+        var(--color-fondo);
+}
+
+body.modo-claro .encabezado-principal {
+    background-color: rgba(255,255,255, 0.86);
+}
+
+body.modo-claro .contenedor-inicio,
+body.modo-claro .contenedor-contacto,
+body.modo-claro .barra-juego,
+body.modo-claro .panel-inferior,
+body.modo-claro .contenido-modal {
+    background: 
+         linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.92));
+}
+
+body.modo-claro .escena-juego {
+    background:
+        radial-gradient(circle at center, rgba(56, 189, 248, 0.18), transparent 34%),
+        linear-gradient(135deg, rgba(239, 246, 255, 0.98), rgba(219, 234, 254, 0.98));
+}
+
+body.modo-claro .boton-secundario,
+body.modo-claro .boton.tema,
+body.modo-claro .objeto-juego,
+body.modo-claro .lista-inventario li,
+body.modo-claro .fila-ranking,
+body.modo-claro .lista-instrucciones {
+    background-color: rgba(15,23,42, 0.04);
+}

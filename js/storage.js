@@ -36,3 +36,19 @@ function obtenerRanking() {
 function limpiarHistorialPartidas() {
     localStorage.removeItem("habitacion404Historial");
 }
+
+function guardarTema(tema) {
+    localStorage.setItem("habitacion404Tema", tema);
+}
+
+function obtenerTemaGuardado() {
+    var tema;
+
+    tema = localStorage.getItem("habitacion404Tema");
+
+    if(tema === null) {
+        return "oscuro";
+    }
+
+    return tema;
+}

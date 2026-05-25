@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var botonPausa;
     var botonRanking;
     var botonInstrucciones;
+    var botonTema;
     var objetoComputadora;
     var objetoCaja;
     var objetoPanel;
@@ -19,10 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
     botonPausa = obtenerElemento("boton-pausa");
     botonRanking = obtenerElemento("boton-ranking");
     botonInstrucciones = obtenerElemento("boton-instrucciones");
+    botonTema = obtenerElemento("boton-tema");
     objetoComputadora = obtenerElemento("objeto-computadora");
     objetoCaja = obtenerElemento("objeto-caja");
     objetoPanel = obtenerElemento("objeto-panel");
     objetoPuerta = obtenerElemento("objeto-puerta");
+
+    aplicarTemaGuardado();
 
     botonJugar.addEventListener("click", mostrarModalNombre);
     botonCerrarModal.addEventListener("click", cerrarModal);
@@ -34,6 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
     objetoCaja.addEventListener("click", abrirCajaFuerte);
     objetoPanel.addEventListener("click", abrirPanelElectrico);
     objetoPuerta.addEventListener("click", abrirPuerta);
+
+    if (botonTema !== null) {
+        botonTema.addEventListener("click", alternarTema);
+    }
 });
 
 
