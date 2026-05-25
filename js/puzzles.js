@@ -263,7 +263,7 @@ function abrirPuerta() {
 
 
 function completarEscape() {
-    if (estadoJuego.abrirPuerta === true) {
+    if (estadoJuego.puertaAbierta === true) {
         return;
     }
 
