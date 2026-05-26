@@ -329,3 +329,37 @@ body.modo-claro .lista-instrucciones {
 .opciones-dificultad input {
     accent-color: var(--color-principal);
 }
+
+
+body.modo-claro .avatar-lateral {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: var(--color-borde);
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.12);
+}
+
+body.modo-claro .avatar-mensaje p {
+    color: var(--color-texto-suave);
+}
+
+body.modo-claro .avatar-mensaje strong {
+    color: var(--color-principal);
+}
+
+body.modo-claro .avatar-imagen {
+    background-color: rgba(56, 189, 248, 0.12);
+}
+
+body.modo-claro .avatar-lateral.avatar-alerta {
+    border-color: var(--color-peligro);
+    box-shadow: 0 0 22px rgba(239, 68, 68, 0.18);
+}
+
+body.modo-claro .avatar-lateral.avatar-exito {
+    border-color: var(--color-exito);
+    box-shadow: 0 0 22px rgba(34, 197, 94, 0.18);
+}
+
+body.modo-claro .avatar-lateral.avatar-pista {
+    border-color: var(--color-advertencia);
+    box-shadow: 0 0 22px rgba(250, 204, 21, 0.18);
+}
