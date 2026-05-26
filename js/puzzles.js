@@ -316,29 +316,230 @@ function completarEscape() {
 
 
 function abrirServidorCentral() {
-    abrirModal(
-        "Servidor central",
-        "<p>El servidor central está protegido. Este será el primer desafío de nivel 2.</p>"
+    var contenido;
+
+    if (estadoJuego.servidorActivado === true) {
+        abrirModal(
+            "Servidor central",
+            "<p>El servidor central ya fue activado. El núcleo del sistema está respondiendo.</p>"
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>El servidor central solicita una clave de administrador.</p>";
+    contenido += "<p>Pista: <strong>El acceso raíz conserva el error del sistema.</strong></p>";
+    contenido += "<div class='campo-modal'>";
+    contenido += "<label for='input-clave-servidor'>Clave del servidor</label>";
+    contenido += "<input type='text' id='input-clave-servidor' autocomplete='off'>";
+    contenido += "<p id='error-clave-servidor' class='mensaje-error'></p>";
+    contenido += "</div>";
+    contenido += "<button id='boton-validar-servidor' class='boton boton-principal'>Activar servidor</button>";
+
+    abrirModal("Servidor central", contenido);
+
+    obtenerElemento("boton-validar-servidor").addEventListener("click", validarServidorCentral);
+
+    obtenerElemento("input-clave-servidor").addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter") {
+            validarServidorCentral();
+        }
+    });
+}
+
+function validarServidorCentral() {
+    var inputClave;
+    var errorClave;
+    var claveIngresada;
+
+    inputClave = obtenerElemento("input-clave-servidor");
+    errorClave = obtenerElemento("error-clave-servidor");
+    claveIngresada = inputClave.value.trim().toLowerCase();
+
+    if (claveIngresada.length === 0) {
+        errorClave.textContent = "Ingresá una clave para activar el servidor.";
+        return;
+    }
+
+    if (claveIngresada !== "root404") {
+        perderVida("Clave incorrecta. El servidor rechazó el acceso.");
+        return;
+    }
+
+    estadoJuego.servidorActivado = true;
+    completarObjetivo();
+    actualizarAvatar("exito", "Servidor activado. El sistema principal volvió a responder.");
+
+    abrirModal( 
+        "Servidor activado",
+        "<p>La clave fue aceptada. El servidor central quedó activo.</p>"
     );
 }
 
 function abrirModuloDatos() {
+    var contenido;
+
+    if (estadoJuego.moduloDatosResuelto === true) {
+        abrirModal(
+            "Módulo de datos",
+            "<p>El módulo de datos ya fue reparado. La secuencia quedó estable.</p>"
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>El módulo de datos muestra tres bloques corruptos: <strong>A, B y C</strong>.</p>";
+    contenido += "<p>Pista: <strong>Primero se inicia el sistema, después se verifica y al final se libera.</strong></p>";
+    contenido += "<p>Ingresá la secuencia correcta usando guiones. Ejemplo: A-B-C</p>";
+    contenido += "<div class='campo-modal'>";
+    contenido += "<label for='input-secuencia-datos'>Secuencia</label>";
+    contenido += "<input type='text' id='input-secuencia-datos' autocomplete='off'>";
+    contenido += "<p id='error-secuencia-datos' class='mensaje-error'></p>";
+    contenido += "</div>";
+    contenido += "<button id='boton-validar-datos' class='boton boton-principal'>Reparar datos</button>";
+
+    abrirModal("Módulo de datos", contenido);
+
+    obtenerElemento("boton-validar-datos").addEventListener("click", validarModuloDatos);
+
+    obtenerElemento("input-secuencia-datos").addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter") {
+            validarModuloDatos();
+        }
+    });
+}
+
+function validarModuloDatos() {
+    var inputSecuencia;
+    var errorSecuencia;
+    var secuenciaIngresada;
+
+    inputSecuencia = obtenerElemento("input-secuencia-datos");
+    errorSecuencia = obtenerElemento("error-secuencia-datos");
+    secuenciaIngresada = inputSecuencia.value.trim().toUpperCase();
+
+    if (secuenciaIngresada.length === 0) {
+        errorSecuencia.textContent = "Ingresá una secuencia para reparar los datos.";
+        return;
+    }
+
+    if (secuenciaIngresada !== "A-C-B") {
+        perderVida("Secuencia incorrecta. Los datos siguen corruptos.");
+        return;
+    }
+
+    estadoJuego.moduloDatosResuelto = true;
+    completarObjetivo();
+    actualizarAvatar("exito", "Módulo reparado. Los datos vuelven a estar sincronizados.");
+
     abrirModal(
-        "Módulo de datos",
-        "<p>El módulo contiene datos corruptos. Este será el segundo desafío de nivel 2.</p>"
+        "Datos reparados",
+        "<p>La secuencia fue aceptada. El módulo de datos quedó sincronizado.</p>"
     );
 }
 
 function abrirPanelSeguridad() {
-    abrirModal(
-        "Pane de seguridad",
-        "<p>El panel controla el bloqueo final del sistema. Este será el tercer desafío del nivel 2.</p>"
+    var contenido;
+
+    if (estadoJuego.panelSeguridadResuelto === true) {
+        abrirModal(
+            "Panel de seguridad",
+            "<p>El panel de seguridad ya fue desactivado. El bloqueo final perdió fuerza.</p>"
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>El panel de seguridad solicita un código de protocolo.</p>";
+    contenido += "<p>Pista: <strong>El protocolo final fue creado el día 27 del mes 06.</strong></p>";
+    contenido += "<div class='campo-modal'>";
+    contenido += "<label for='input-codigo-seguridad'>Código de seguridad</label>";
+    contenido += "<input type='text' id='input-codigo-seguridad' maxlength='4' autocomplete='off'>";
+    contenido += "<p id='error-codigo-seguridad' class='mensaje-error'></p>";
+    contenido += "</div>";
+    contenido += "<button id='boton-validar-seguridad' class='boton boton-principal'>Desactivar bloqueo</button>";
+
+    abrirModal("Panel de seguridad", contenido);
+
+    obtenerElemento("boton-validar-seguridad").addEventListener("click", validarPanelSeguridad);
+
+    obtenerElemento("input-codigo-seguridad").addEventListener("keydown", function(evento) {
+        if (evento.key === "Enter") {
+            validarPanelSeguridad();
+        }
+    });
+}
+
+function validarPanelSeguridad() {
+    var inputCodigo;
+    var errorCodigo;
+    var codigoIngresado;
+
+    inputCodigo = obtenerElemento("input-codigo-seguridad");
+    errorCodigo = obtenerElemento("error-codigo-seguridad");
+    codigoIngresado = inputCodigo.value.trim();
+
+    if (codigoIngresado.length === 0) {
+        errorCodigo.textContent = "Ingresá un código para desactivar el bloqueo.";
+        return;
+    }
+
+    if (codigoIngresado !== "2706") {
+        perderVida("Código incorrecto. El panel aumentó el nivel de bloqueo.");
+        return;
+    }
+
+    estadoJuego.panelSeguridadResuelto = true;
+    completarObjetivo();
+    actualizarAvatar("exito", "Panel desactivado. La salida final ya puede verificarse.");
+
+    abrirModal( 
+        "Bloqueo desactivado",
+        "<p>El código fue aceptado. El panel de seguridad quedó desactivado.</p>"
     );
 }
 
 function abrirSalidaFinal() {
-    abrirModal(
-        "Salida final",
-        "<p>La salida final todavía está bloqueada. Primero tendrás que resolver los desafíos de la sala del servidor.</p>"
-    );
+    var contenido;
+
+    if (estadoJuego.servidorActivado === false) {
+        actualizarAvatar("pista", "La salida final necestia que el servidor centra esté activo.");
+
+        abrirModal(
+            "Salida bloqueada",
+            "<p>El servidor central todavía no fue activado.</p>"
+        );
+        return;
+    }
+
+    if (estadoJuego.moduloDatosResuelto === false) {
+        actualizarAvatar("pista", "Los datos siguen corruptos. Revisá el módulo de datos.");
+
+        abrirModal(
+            "Salida bloqueada",
+            "<p>El módulo de datos todavía no fue reparado.</p>"
+        );
+        return;
+    }
+
+    if (estadoJuego.panelSeguridadResuelto === false) {
+        actualizarAvatar("pista", "El panel de seguridad todavía mantiene el bloqueo final.");
+
+        abrirModal(
+            "Salida bloqueada",
+            "<p>El panel de seguridad todavía está activo.</p>"
+        );
+        return;
+    }
+
+    contenido = "";
+    contenido += "<p>Todos los sistemas fueron estabilizados.</p>";
+    contenido += "<p>La salida final está lista para abrirse.</p>";
+    contenido += "<div class='acciones-inicio'>";
+    contenido += "<button id='boton-salida-final' class='boton boton-principa'>Escapar definitivamente</button>"
+    contenido += "</div>";
+
+    abrirModal("Salida final habilitada", contenido);
+
+    obtenerElemento("boton-salida-final").addEventListener("click", completarEscape);
 }

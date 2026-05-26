@@ -317,7 +317,7 @@ function revisarLogros() {
 function iniciarNivelDos() {
     estadoJuego.nivelActual = 2;
     estadoJuego.progreso = 0;
-    estadoJuego.totalObjetivos = 3;
+    estadoJuego.totalObjetivos = 4;
     estadoJuego.servidorActivado = false;
     estadoJuego.moduloDatosResuelto = false;
     estadoJuego.panelSeguridadResuelto = false;
