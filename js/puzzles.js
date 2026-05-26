@@ -6,6 +6,7 @@ function abrirComputadora() {
     var contenido;
 
     if (estadoJuego.energiaRestaurada === false) {
+        actualizarAvatar("pista", "La computadora no tiene energía. Revisá el panel eléctrico.");
         abrirModal(
             "Computadora apagada",
             "<p>La computadora no responde. Parece que primero tenés que restaurar la energía desde el panel eléctrico.</p>"
@@ -64,6 +65,7 @@ function validarComputadora() {
 
     estadoJuego.computadoraDesbloqueada = true;
     completarObjetivo();
+    actualizarAvatar("exito", "Terminal desbloqueada. La salida final está más cerca.");
 
     abrirModal(
         "Terminal desbloqueada",
@@ -129,6 +131,7 @@ function validarCajaFuerte() {
 
     agregarAlInventario("Tarjeta de acceso");
     completarObjetivo();
+    actualizarAvatar("exito", "Tarjeta encontrada. Puede servir para desbloquear la salida.");
 
     abrirModal(
         "Caja abierta",
@@ -206,6 +209,7 @@ function validarPanelElectrico() {
     ) {
         estadoJuego.energiaRestaurada = true;
         completarObjetivo();
+        actualizarAvatar("exito", "Energía restaurada. La computadora volvió a responder.");
 
         abrirModal(
             "Energía restaurada",
@@ -222,6 +226,7 @@ function abrirPuerta() {
     var contenido;
 
     if (estadoJuego.energiaRestaurada === false) {
+        actualizarAvatar("pista", "La puerta no responde porque el sistema sigue sin energía.");
         abrirModal(
             "Puerta sin energía",
             "<p>La puerta principal no responde. Primero tenés que restaurar la energía desde el panel eléctrico.</p> "
@@ -231,6 +236,7 @@ function abrirPuerta() {
     }
 
     if (estadoJuego.tarjetaEncontrada === false) {
+        actualizarAvatar("pista", "El lector pide una tarjeta de acceso. Revisá otros objetos.");
         abrirModal(
             "Acceso denegado",
             "<p>El lector de la puerta solicita una tarjeta de acceso. Buscá una forma de encontrarla dentro de la habitación.</p>"
@@ -241,6 +247,7 @@ function abrirPuerta() {
 
 
     if (estadoJuego.computadoraDesbloqueada === false) {
+        actualizarAvatar("pista", "La tarjeta sirve, pero la computadora todavía no habilitó la salida.");
         abrirModal(
             "Sistema bloqueado",
             "<p>La tarjeta fue detectada, pero la computadora principal todavía no habilitó la salida.</p> "

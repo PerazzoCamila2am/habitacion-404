@@ -79,6 +79,7 @@ actualizarTiempo(formatearTiempo(estadoJuego.tiempoRestante));
 actualizarVidas(estadoJuego.vidas);
 actualizarProgreso(estadoJuego.progreso, estadoJuego.totalObjetivos);
 actualizarInventario();
+actualizarAvatar("pista", "Explorá la sala. El sistema está bloqueado.");
 
 cerrarModal();
 mostrarPantalla("pantalla-juego");
@@ -140,6 +141,7 @@ function completarObjetivo() {
 function perderVida(mensaje) {
     estadoJuego.vidas--;
     actualizarVidas(estadoJuego.vidas);
+    actualizarAvatar("alerta", mensaje);
     reproducirSonido("error");
 
     if (estadoJuego.vidas <=0) {
@@ -163,6 +165,7 @@ function perderPartida(mensaje) {
     detenerTemporizador();
     guardarResultadoPartida();
     reproducirSonido("error");
+    actualizarAvatar("alerta", "Sistema bloqueado. La partida terminó.");
 
     mostrarModalFinPartida("Game Over", mensaje);
 }
@@ -176,6 +179,7 @@ function ganarPartida() {
     guardarResultadoPartida();
     revisarLogros();
     reproducirSonido("victoria");
+    actualizarAvatar("exito", "Salida encontrada. Escape exitoso.");
 
     mostrarModalFinPartida("Escape exitoso", "Lograste salir de la Habitación 404 antes de que el sistema se reinicie.");
 }

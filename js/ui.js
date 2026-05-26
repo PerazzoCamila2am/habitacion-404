@@ -259,3 +259,40 @@ function crearItemLogro(nombre, descripcion, logrosGuardados) {
 
     return contenido;
 }
+
+
+function actualizarAvatar(tipo, mensaje) {
+    var avatarSistema;
+    var mensajeAvatar;
+
+    avatarSistema = obtenerElemento("avatar-sistema");
+    mensajeAvatar = obtenerElemento("mensaje-avatar");
+
+    if (avatarSistema === null || mensajeAvatar === null) {
+        return;
+    }
+
+
+    avatarSistema.classList.remove("avatar-alerta");
+    avatarSistema.classList.remove("avatar-exito");
+    avatarSistema.classList.remove("avatar-pista");
+    avatarSistema.classList.remove("animar-avatar");
+
+    if (tipo === "alerta") {
+        avatarSistema.classList("avatar-alerta");
+    }
+
+    if (tipo === "exito") {
+        avatarSistema.classList.add("avatar-exito");
+    }
+
+    if (tipo === "pista") {
+        avatarSistema.classList.add("avatar-pista");
+    }
+
+    mensajeAvatar.textContent = mensaje;
+
+    setTimeout(function () {
+        avatarSistema.classList.add("animar-avatar");
+    },10);
+} 
