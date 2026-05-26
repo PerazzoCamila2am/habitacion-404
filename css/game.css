@@ -203,8 +203,8 @@
 }
 
 .avatar-lateral.avatar-alerta {
-    border-color: var(--color-exito);
-    box-shadow: 0 0 22px rgba(139,68,68, 0.22);
+    border-color: var(--color-peligro);
+    box-shadow: 0 0 22px rgba(239,68,68, 0.22);
 }
 
 .avatar-lateral.avatar-exito {

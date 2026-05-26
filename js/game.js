@@ -17,6 +17,10 @@ var estadoJuego = {
     computadoraDesbloqueada: false,
     tarjetaEncontrada: false,
     puertaAbierta: false,
+    servidorActivado: false,
+    moduloDatosResuelto: false,
+    panelSeguridadResuelto: false,
+    puertaFinalAbierta: false,
     inventario: []
 };
 
@@ -69,6 +73,12 @@ function iniciarPartida(nombreJugador) {
     estadoJuego.computadoraDesbloqueada = false;
     estadoJuego.tarjetaEncontrada = false;
     estadoJuego.puertaAbierta = false;
+    estadoJuego.nivelActual = 1;
+    estadoJuego.totalObjetivos = 4;
+    estadoJuego.servidorActivado = false;
+    estadoJuego.moduloDatosResuelto = false;
+    estadoJuego.panelSeguridadResuelto = false;
+    estadoJuego.puertaFinalAbierta = false;
     estadoJuego.inventario = [];
 
 
@@ -79,6 +89,7 @@ actualizarTiempo(formatearTiempo(estadoJuego.tiempoRestante));
 actualizarVidas(estadoJuego.vidas);
 actualizarProgreso(estadoJuego.progreso, estadoJuego.totalObjetivos);
 actualizarInventario();
+actualizarEscenaNivel(1);
 actualizarAvatar("pista", "Explorá la sala. El sistema está bloqueado.");
 
 cerrarModal();
@@ -139,16 +150,24 @@ function completarObjetivo() {
 }
 
 function perderVida(mensaje) {
-    estadoJuego.vidas--;
-    actualizarVidas(estadoJuego.vidas);
-    actualizarAvatar("alerta", mensaje);
-    reproducirSonido("error");
+    if (estadoJuego.partidaActiva === false) {
+        return;
+    }
 
-    if (estadoJuego.vidas <=0) {
+    estadoJuego.vidas--;
+
+    if (estadoJuego.vidas <= 0) {
+        estadoJuego.vidas = 0;
+        actualizarVidas(estadoJuego.vidas);
+        actualizarAvatar("alerta", "Sistema bloqueado. Te quedaste sin vidas.");
+        reproducirSonido("error");
         perderPartida("Te quedaste sin vidas. El sistema bloqueó la habitación.");
         return;
     }
 
+    actualizarVidas(estadoJuego.vidas);
+    actualizarAvatar("alerta", mensaje);
+    reproducirSonido("error");
     mostrarMensajeModal(mensaje);
 }
 
@@ -158,6 +177,10 @@ function agregarAlInventario(nombreObjeto) {
 }
 
 function perderPartida(mensaje) {
+    if (estadoJuego.resultado === "Derrota" || estadoJuego.resultado === "Victoria") {
+        return;
+    }
+
     estadoJuego.partidaActiva = false;
     estadoJuego.juegoPausado = false;
     estadoJuego.resultado = "Derrota";
@@ -171,6 +194,10 @@ function perderPartida(mensaje) {
 }
 
 function ganarPartida() {
+    if (estadoJuego.resultado === "Derrota" || estadoJuego.resultado === "Victoria") {
+        return;
+    }
+
     estadoJuego.partidaActiva = false;
     estadoJuego.juegoPausado = false;
     estadoJuego.resultado = "Victoria";
@@ -284,4 +311,23 @@ function revisarLogros() {
     if (estadoJuego.progreso === estadoJuego.totalObjetivos) {
         guardarLogro("Explorador");
     }
+}
+
+
+function iniciarNivelDos() {
+    estadoJuego.nivelActual = 2;
+    estadoJuego.progreso = 0;
+    estadoJuego.totalObjetivos = 3;
+    estadoJuego.servidorActivado = false;
+    estadoJuego.moduloDatosResuelto = false;
+    estadoJuego.panelSeguridadResuelto = false;
+    estadoJuego.puertaFinalAbierta = false;
+
+    actualizarProgreso(estadoJuego.progreso, estadoJuego.totalObjetivos);
+    actualizarEscenaNivel(2);
+
+    abrirModal(
+        "Nivel 2 desbloqueado",
+        "<p>La puerta se abrió, pero no era la salida final. Entraste a la sala del servidor.</p><p>Ahora tenés que desactivar el núcleo del sistema para escapar definitivamente.</p>"
+    );
 }

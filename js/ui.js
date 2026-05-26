@@ -279,7 +279,7 @@ function actualizarAvatar(tipo, mensaje) {
     avatarSistema.classList.remove("animar-avatar");
 
     if (tipo === "alerta") {
-        avatarSistema.classList("avatar-alerta");
+        avatarSistema.classList.add("avatar-alerta");
     }
 
     if (tipo === "exito") {
@@ -296,3 +296,23 @@ function actualizarAvatar(tipo, mensaje) {
         avatarSistema.classList.add("animar-avatar");
     },10);
 } 
+
+
+function actualizarEscenaNivel(nivel) {
+    if (nivel === 1) {
+        obtenerElemento("objeto-computadora").textContent = "Computadora";
+        obtenerElemento("objeto-caja").textContent = "Caja Fuerte";
+        obtenerElemento("objeto-panel").textContent = "Panel eléctrico";
+        obtenerElemento("objeto-puerta").textContent = "Puerta";
+
+        actualizarAvatar("pista", "Explorá la sala. El sistema está bloqueado.");
+        return;
+    }
+
+    obtenerElemento("objeto-computadora").textContent = "Servidor central";
+    obtenerElemento("objeto-caja").textContent = "Módulo de datos";
+    obtenerElemento("objeto-panel").textContent = "Panel de seguridad";
+    obtenerElemento("objeto-puerta").textContent = "Salida final";
+
+    actualizarAvatar("pista", "Nivel 2 iniciado. Estás en la sala del servidor.");
+}

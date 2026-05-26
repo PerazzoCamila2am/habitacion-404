@@ -5,6 +5,11 @@ var interruptoresPanel = [false, false, false, false];
 function abrirComputadora() {
     var contenido;
 
+    if (estadoJuego.nivelActual === 2) {
+        abrirServidorCentral();
+        return;
+    }
+
     if (estadoJuego.energiaRestaurada === false) {
         actualizarAvatar("pista", "La computadora no tiene energía. Revisá el panel eléctrico.");
         abrirModal(
@@ -76,6 +81,11 @@ function validarComputadora() {
 function abrirCajaFuerte() {
     var contenido;
 
+    if (estadoJuego.nivelActual === 2) {
+        abrirModuloDatos();
+        return;
+    }
+
     if (estadoJuego.cajaAbierta === true) {
         abrirModal( 
             "Caja fuerte abierta",
@@ -141,6 +151,11 @@ function validarCajaFuerte() {
 
 function abrirPanelElectrico() {
     var contenido;
+
+    if (estadoJuego.nivelActual === 2) {
+        abrirPanelSeguridad();
+        return;
+    }
 
     if (estadoJuego.energiaRestaurada === true) {
         abrirModal(
@@ -225,6 +240,11 @@ function validarPanelElectrico() {
 function abrirPuerta() {
     var contenido;
 
+    if (estadoJuego.nivelActual === 2) {
+        abrirSalidaFinal();
+        return;
+    }
+
     if (estadoJuego.energiaRestaurada === false) {
         actualizarAvatar("pista", "La puerta no responde porque el sistema sigue sin energía.");
         abrirModal(
@@ -270,11 +290,55 @@ function abrirPuerta() {
 
 
 function completarEscape() {
+   if (estadoJuego.nivelActual === 1) {
     if (estadoJuego.puertaAbierta === true) {
         return;
     }
 
     estadoJuego.puertaAbierta = true;
     completarObjetivo();
-    ganarPartida();
+    iniciarNivelDos();
+    return;
+   }
+
+   if (estadoJuego.puertaFinalAbierta === true) {
+    return;
+   }
+
+   if (estadoJuego.puertaFinalAbierta === true) {
+    return;
+   }
+
+   estadoJuego.puertaFinalAbierta = true;
+   completarObjetivo();
+   ganarPartida();
+}
+
+
+function abrirServidorCentral() {
+    abrirModal(
+        "Servidor central",
+        "<p>El servidor central está protegido. Este será el primer desafío de nivel 2.</p>"
+    );
+}
+
+function abrirModuloDatos() {
+    abrirModal(
+        "Módulo de datos",
+        "<p>El módulo contiene datos corruptos. Este será el segundo desafío de nivel 2.</p>"
+    );
+}
+
+function abrirPanelSeguridad() {
+    abrirModal(
+        "Pane de seguridad",
+        "<p>El panel controla el bloqueo final del sistema. Este será el tercer desafío del nivel 2.</p>"
+    );
+}
+
+function abrirSalidaFinal() {
+    abrirModal(
+        "Salida final",
+        "<p>La salida final todavía está bloqueada. Primero tendrás que resolver los desafíos de la sala del servidor.</p>"
+    );
 }
