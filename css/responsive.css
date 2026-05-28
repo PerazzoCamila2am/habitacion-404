@@ -16,9 +16,14 @@
 @media (max-width: 768px) {
 
     .avatar-lateral {
-        position: static;
         width: 100%;
-        margin-top: 12px;
+    }
+
+    .bloque-inventario,
+    .avatar-lateral,
+    .acciones-juego {
+        flex: none;
+        width: 100%;
     }
     .navegacion-principal {
         flex-direction: column;
@@ -63,6 +68,11 @@
 
     .objeto-juego {
         width: 100%;
+        min-height: 120px;
+    }
+
+    #objeto-puerta {
+        min-height: 140px;
     }
 
     .acciones-juego {
