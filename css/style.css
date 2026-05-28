@@ -284,7 +284,7 @@ body.modo-claro .escena-juego {
 }
 
 body.modo-claro .boton-secundario,
-body.modo-claro .boton.tema,
+body.modo-claro .boton-tema,
 body.modo-claro .objeto-juego,
 body.modo-claro .lista-inventario li,
 body.modo-claro .fila-ranking,
@@ -414,6 +414,11 @@ body.modo-claro .contenido-terminal {
     line-height: 1.5;
 }
 
+.contenido-terminal p {
+    opacity: 0;
+    animation: aparecer-linea 0.45s ease forwards;
+}
+
 .contenido-terminal p:nth-child(1) {
     animation-delay: 0.2s;
 }
@@ -435,7 +440,7 @@ body.modo-claro .contenido-terminal {
     animation: parpadeo-cursor 0.8s infinite;
 }
 
-.inea-escaneo {
+.linea-escaneo {
     position: absolute;
     left: 0;
     top: -40%;
@@ -483,7 +488,7 @@ body.modo-claro .contenido-terminal {
     }
 }
 
-.titlo-glitch {
+.titulo-glitch {
     position: relative;
     text-shadow: 
     0 0 18px rgba(56,189,248,0.28),
